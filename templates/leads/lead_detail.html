@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto">
+      <div class="lg:w-4/4 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">Lead {{agent.organisation}}</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{lead.first_name}} {{lead.last_name}}</h1>
+        <div class="flex mb-4">
+          <a href="{% url 'leads:lead_detail' lead.pk%}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Overview</a>
+          <a href="{% url 'leads:category-update' lead.pk%}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Category</a>
+          <a href="{% url 'leads:lead_update' lead.pk%}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
+        </div>
+        <p class="leading-relaxed mb-4">{{lead.description}}</p>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500 px-5">Age</span>
+          <span class="ml-auto px-5 text-gray-900">{{lead.age}}</span>
+        </div>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500 px-5 ">Agent</span>
+          <span class="ml-auto px-5 text-gray-900">{{lead.agent}}</span>
+        </div>
+        <div class="flex border-t border-b border-gray-200 py-2">
+          <span class="text-gray-500 px-5 ">Phone</span>
+          <span class="ml-auto px-5 text-gray-900">+237{{lead.phone_number}}</span>
+        </div>
+        <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+          <span class="text-gray-500 px-5 ">E-mail</span>
+          <span class="ml-auto px-5 text-gray-900">{{lead.email}}</span>
+        </div>
+        <div class="flex">
+
+          {% if request.user.is_organiser %}
+          <button class="w-full mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"> <a href="{% url 'leads:lead_delete' lead.pk %}">Delete</a> </button>
+        
+          {% endif %}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+{% endblock content %}
+ 

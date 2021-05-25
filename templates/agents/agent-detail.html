@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">Agent</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{agent.first_name}} {{agent.last_name}}</h1>
+        <div class="flex mb-4">
+          <a href="{% url 'agents:agent_detail' agent.pk%}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Overview</a>
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1"></a>
+          <a href="{% url 'agents:agent_update' agent.pk%}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
+        </div>
+        <p class="agenting-relaxed mb-4">This is the information about this agent</p>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500">Name</span>
+          <span class="ml-auto text-gray-900">{{agent.user.username}}</span>
+        </div>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500">Location</span>
+          <span class="ml-auto text-gray-900">{{agent.loacation}}</span>
+        </div>
+        <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+          <span class="text-gray-500">Phone</span>
+          <span class="ml-auto text-gray-900">{{agent.phone}}</span>
+        </div>
+        <div class="flex">
+       
+          <button class="w-full mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"> <a href="{% url 'agents:agent_delete' agent.pk %}">Delete</a> </button>
+         
+        </div>
+      </div>
+      {% if agent.image %}
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{agent.image.url}}">
+      {% else %}
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

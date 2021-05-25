@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+Assign this lead to an Agent
+<form method="post">
+{% csrf_token %}
+{{form|crispy}}
+<input type="submit" value="Create Lead">
+</form>
+{% endblock content %}
